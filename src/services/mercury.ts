@@ -11,7 +11,7 @@ const ALLOWED_COUNTERPARTIES = [
   'dropispy.com', 'adnosaur', 'lemsqzy winninghunter', 'canva',
   'play.ht', 'openai', 'submagic.co', 'invideo', 'sublaunch',
   'vidyo.ai', 'jasper.ai', 'webflow', 'cutout.pro',
-  'amazon web services', 'runway unlimited plan', 'copyai', 'jungle scout'
+  'amazon web services', 'runway unlimited plan', 'copyai', 'jungle scout', 'webshare'
 ].map(s => s.toLowerCase());
 
 interface MercuryConfig {
