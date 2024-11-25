@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Transaction } from '../types/accounting';
 
-const BASE_URL = 'https://api.mercury.com/api/v1';
+const BASE_URL = 'https://rear-hatty-spybox-f7f73c2f.koyeb.app/api/v1';
 
 const ALLOWED_COUNTERPARTIES = [
   'adsparo', 'fliki.ai', 'foreplay.co', 'www.ppspy.com', 'adspy',
@@ -11,7 +11,7 @@ const ALLOWED_COUNTERPARTIES = [
   'dropispy.com', 'adnosaur', 'lemsqzy winninghunter', 'canva',
   'play.ht', 'openai', 'submagic.co', 'invideo', 'sublaunch',
   'vidyo.ai', 'jasper.ai', 'webflow', 'cutout.pro',
-  'amazon web services', 'runway unlimited plan', 'copyai', 'jungle scout', 'webshare'
+  'amazon web services', 'runway unlimited plan', 'copyai', 'jungle scout'
 ].map(s => s.toLowerCase());
 
 interface MercuryConfig {
@@ -102,7 +102,7 @@ const fetchAccountTransactions = async (account: MercuryConfig): Promise<Transac
   try {
     for (const accountId of account.accountIds) {
       const response = await axios.get<{ transactions: MercuryTransaction[] }>(
-        `${BASE_URL}/account/${accountId}/transactions`,
+        `${BASE_URL}/account/transactions/${account.apiKey}/${accountId}`,
         { headers: getHeaders(account.apiKey) }
       );
 
@@ -115,7 +115,10 @@ const fetchAccountTransactions = async (account: MercuryConfig): Promise<Transac
       }
     }
 
+    console.log(transactions);
+
     return transactions;
+
   } catch (error) {
     throw new MercuryError(
       `Failed to fetch transactions for ${account.name}`,
